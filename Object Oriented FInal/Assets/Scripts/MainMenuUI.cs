@@ -58,6 +58,19 @@ public class MainMenuUI : MonoBehaviour
         MainPanel = transform.Find("MainOptions").gameObject;
         OptionsPanel = transform.Find("Options").gameObject;
         DifficultyPanel = transform.Find("PlayOptions").gameObject;
+        GameObject obj = GameObject.Find("PlayerName");
+        if (obj != null)
+        {
+            PlayerName = obj.GetComponent<TMP_Text>();
+            if (PlayerName == null)
+            {
+                Debug.LogError("PlayerName object found, but TMP_Text component missing.");
+            }
+        }
+        else
+        {
+            Debug.LogError("No GameObject named 'PlayerName' found in scene.");
+        }
         MenuAudio = GetComponent<AudioSource>();
         //finds all the components so I can unserialize.
     }
@@ -99,6 +112,17 @@ public class MainMenuUI : MonoBehaviour
     { 
         DataManager.Instance.Save();
         //save the data.
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void SetDifficulty(int difficulty)
+    { 
+        DataManager.Instance.Difficulty = difficulty;
+        SceneManager.LoadScene(1);
     }
 
     public void InputName()
