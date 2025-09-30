@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [Header("Main Menu Buttons")]
+    [Header("Main Menu Buttons")] //remove serialize when done
     [SerializeField] private Button PlayButton;
     [SerializeField] private Button OptionsButton;
     [SerializeField] private Button ExitButton;
@@ -37,7 +37,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject DifficultyPanel;
     [SerializeField] private GameObject CreditsPanel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   //find all the components.
     private void Awake()
     {
         PlayButton = transform.Find("MainOptions/Play").GetComponent<Button>();
@@ -105,7 +105,7 @@ public class MainMenuUI : MonoBehaviour
         volumeSliderValue= volumeSlider.value;
         MenuAudio.volume= volumeSliderValue;
         DataManager.Instance.VolumeSetting = volumeSliderValue;
-        //fingers crossed this changes volume.
+        //fingers crossed this changes volume. Fun fact it did.
     }
 
     public void SaveButtonPressed()
@@ -117,12 +117,14 @@ public class MainMenuUI : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene(2);
+        //yes I made credits. I laughed.
     }
 
     public void SetDifficulty(int difficulty)
     { 
         DataManager.Instance.Difficulty = difficulty;
         SceneManager.LoadScene(1);
+        //I previously tried using a switch but this is more elegant.
     }
 
     public void InputName()
@@ -148,6 +150,7 @@ public class MainMenuUI : MonoBehaviour
         PlayerName.text = newName;
         DataManager.Instance.PlayerName = newName;
         Debug.Log($"Name updated to: {newName}");
+        //sets the name
     }
     public void Exit()
     {
@@ -156,6 +159,6 @@ public class MainMenuUI : MonoBehaviour
 #else
         Application.Quit();
 #endif
-        // Update is called once per frame
+        //exits.
     }
 }
